@@ -3,16 +3,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using AutoMapper;
-using System.Linq;
-using Core.Interfaces;
 using API.Helpers;
 using API.Middleware;
-using API.Errors;
 using API.Extensions;
+using StackExchange.Redis;
 
 namespace API
 {
@@ -33,6 +29,11 @@ namespace API
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => 
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IConnectionMultiplexer>(c => {
+                var configuration = ConfigurationOptions.Parse(_config.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
 
             // services.Configure<ApiBehaviorOptions>(options => 
             // {
