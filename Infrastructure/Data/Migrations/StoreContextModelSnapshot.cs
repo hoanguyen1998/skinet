@@ -51,7 +51,7 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int?>("DeliveryMethodId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTimeOffset>("OrderData")
+                    b.Property<DateTimeOffset>("OrderDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PaymentIntentId")

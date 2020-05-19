@@ -19,8 +19,8 @@ namespace Infrastructure.Data.Config
                     o => (OrderStatus) Enum.Parse(typeof(OrderStatus), o)
                 );
 
-            builder.HasMany(o => o.OrderItems).WithOne().OnDelete
-            (DeleteBehavior.Cascade);
+            builder.HasMany(o => o.OrderItems).WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

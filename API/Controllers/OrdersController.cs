@@ -12,11 +12,11 @@ using API.Dtos;
 namespace API.Controllers
 {
     [Authorize]
-    public class OrderController: BaseApiController
+    public class OrdersController: BaseApiController
     {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
-        public OrderController(IOrderService orderService, IMapper mapper)
+        public OrdersController(IOrderService orderService, IMapper mapper)
         {
             _mapper = mapper;
             _orderService = orderService;
